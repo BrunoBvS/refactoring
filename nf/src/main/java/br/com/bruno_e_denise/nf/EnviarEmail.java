@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 
 public class EnviarEmail {
 	
-	public void enviarEmail(Fatura f) {
+	public void enviarEmail(Fatura fatura) {
 				
 		final String username = "refatoracaoalfa2017@gmail.com";
 		final String password = "refatoracao123";

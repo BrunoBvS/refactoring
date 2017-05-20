@@ -5,15 +5,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class GeradorNotaFiscal {
-	public void geraNota(Fatura f, Imposto imposto) {
-		NotaFiscal notaFiscal = geraNotaFiscal(f, imposto);
+	public void geraNota(Fatura fatura, Imposto imposto) {
+		NotaFiscal notaFiscal = geraNotaFiscal(fatura, imposto);
 		armazenarNoBanco(notaFiscal);
-		enviarEmail(f);
+		enviarEmail(fatura);
 	}
 
-	private void enviarEmail(Fatura f) {
+	private void enviarEmail(Fatura fatura) {
 		EnviarEmail enviaEmail = new EnviarEmail();
-		enviaEmail.enviarEmail(f);
+		enviaEmail.enviarEmail(fatura);
 	}
 
 	private void armazenarNoBanco(NotaFiscal notaFiscal) {
@@ -29,12 +29,12 @@ public class GeradorNotaFiscal {
 		em.close();
 	}
 
-	private NotaFiscal geraNotaFiscal(Fatura f, Imposto imposto) {
-		double valorImposto = 0;
+	private NotaFiscal geraNotaFiscal(Fatura fatura, Imposto imposto) {
+		final double valorDaFatura = fatura.getValor();
+		final double valorImposto = imposto.getValor(valorDaFatura);
+		final double valorBruto = fatura.getValor();
 
-		valorImposto = imposto.getValor(f.getV());
-
-		NotaFiscal notaFiscal = new NotaFiscal(valorImposto, f.getV());
+		NotaFiscal notaFiscal = new NotaFiscal(valorImposto, valorBruto);
 		return notaFiscal;
 	}
 }
