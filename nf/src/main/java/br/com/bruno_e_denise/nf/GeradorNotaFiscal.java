@@ -1,4 +1,4 @@
-package br.com.diego.nf;
+package br.com.bruno_e_denise.nf;
 
 import java.util.Properties;
 

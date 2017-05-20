@@ -1,4 +1,4 @@
-package br.com.diego.nf;
+package br.com.bruno_e_denise.nf;
 
 import org.zkoss.bind.AnnotateBinder;
 import org.zkoss.zhtml.Messagebox;
@@ -39,9 +39,9 @@ public class CIndex extends GenericForwardComposer {
 			imposto = new ICMS();
 		}
 
-		new GeradorNotaFiscal().geraNota(fatura, imposto);		
+		new GeradorNotaFiscal().geraNota(fatura, imposto);
 		Clients.clearBusy();
-		
+
 		Messagebox.show("Nota Fiscal gerada com sucesso");
 	}
 }
