@@ -1,8 +1,8 @@
-package br.com.bruno_e_denise.nf;
+package br.com.duplabrunodenise.nf;
 
-import br.com.bruno_e_denise.nf.entities.NotaFiscal;
-import br.com.bruno_e_denise.nf.services.BancoService;
-import br.com.bruno_e_denise.nf.services.EmailService;
+import br.com.duplabrunodenise.nf.entities.NotaFiscal;
+import br.com.duplabrunodenise.nf.services.BancoService;
+import br.com.duplabrunodenise.nf.services.EmailService;
 
 public class GeradorNotaFiscal {
 	public void geraNota(Fatura fatura, ImpostoInterface imposto) {
@@ -16,7 +16,6 @@ public class GeradorNotaFiscal {
 		final double valorImposto = imposto.getValor(valorDaFatura);
 		final double valorBruto = fatura.getValor();
 
-		NotaFiscal notaFiscal = new NotaFiscal(valorImposto, valorBruto);
-		return notaFiscal;
+		return new NotaFiscal(valorImposto, valorBruto);
 	}
 }

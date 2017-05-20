@@ -1,7 +1,7 @@
-package br.com.bruno_e_denise.nf.services;
+package br.com.duplabrunodenise.nf.services;
 
-import br.com.bruno_e_denise.nf.Fatura;
-import br.com.bruno_e_denise.nf.entities.NotaFiscal;
+import br.com.duplabrunodenise.nf.Fatura;
+import br.com.duplabrunodenise.nf.entities.NotaFiscal;
 
 import java.util.Properties;
 
@@ -15,6 +15,8 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailService {
 	
+	EmailService() {}
+	
 	public static void envieEmail(Fatura fatura, NotaFiscal notaFiscal) {
 				
 		final String username = "refatoracaoalfa2017@gmail.com";
@@ -27,6 +29,7 @@ public class EmailService {
 		props.put("mail.smtp.port", "587");
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(username, password);
 			}
@@ -46,7 +49,7 @@ public class EmailService {
 			Transport.send(message);
 
 		} catch (MessagingException e) {
-			throw new RuntimeException(e);
+			throw new EmailNotSentException(e);
 		}
 	}
 

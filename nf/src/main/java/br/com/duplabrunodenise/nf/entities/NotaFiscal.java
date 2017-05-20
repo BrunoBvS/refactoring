@@ -1,4 +1,4 @@
-package br.com.bruno_e_denise.nf.entities;
+package br.com.duplabrunodenise.nf.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,9 +13,11 @@ public class NotaFiscal {
 	private double valorImposto;
 	private double valorBruto;
 
+	public NotaFiscal() {}
+	
 	public NotaFiscal(double valorImposto, double valorBruto) {
-		this.valorImposto = valorImposto;
-		this.valorBruto = valorBruto;
+		this.setValorImposto(valorImposto);
+		this.setValorBruto(valorBruto);
 	}
 
 	public int getIdentificador() {
@@ -40,6 +42,10 @@ public class NotaFiscal {
 
 	public void setValorBruto(double valorBruto) {
 		this.valorBruto = valorBruto;
+	}
+	
+	public double getValorTotal() {
+		return this.valorBruto + this.valorImposto;
 	}
 
 }

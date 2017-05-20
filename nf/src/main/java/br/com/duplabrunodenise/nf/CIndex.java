@@ -1,4 +1,4 @@
-package br.com.bruno_e_denise.nf;
+package br.com.duplabrunodenise.nf;
 
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
@@ -11,12 +11,14 @@ import org.zkoss.zul.Decimalbox;
 import org.zkoss.zul.Radiogroup;
 import org.zkoss.zul.Textbox;
 
+@SuppressWarnings("serial")
 public class CIndex extends GenericForwardComposer {
 	private DataBinder binder;
 	private Textbox txtbxNomeCliente;
 	private Decimalbox dcmlbxValorFatura;
 	private Radiogroup rdgrpTipoImposto;
 
+	@Override
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		binder = new AnnotateDataBinder(comp);

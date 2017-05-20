@@ -1,4 +1,4 @@
-package br.com.bruno_e_denise.nf;
+package br.com.duplabrunodenise.nf;
 
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
