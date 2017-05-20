@@ -52,19 +52,25 @@
 			<rows>
 				<row>
 					<listbox id="lstbxNotaFiscal" mold="paging"
-						pageSize="5" model="@{exemplo$composer.listaNotaFiscal}"
+						pageSize="5" model="@{exemplo$composer.listaTodasNotasFiscaisDoBanco}"
 						width="100%" emptyMessage="Nenhum informação na tabela."
-						visible="false">
+						visible="true">
 						<listhead sizable="true">
-							<listheader label="Imposto" width="50%"
+							<listheader label="Identificador Nota Fiscal" width="50%"
 								align="center" />
 							<listheader label="Valor Bruto" width="50%"
+								align="center" />
+							<listheader label="Valor Imposto" width="50%"
+								align="center" />
+							<listheader label="Valor Total" width="50%"
 								align="center" />
 						</listhead>
 						<listitem self="@{each=registro}"
 							value="@{registro}">
-							<listcell label="@{registro.id}" />
-							<listcell label="@{registro.valorBruto}" />
+							<listcell label="@{registro.id}" style="font-weight: bold;"/>
+							<listcell label="@{registro.valorBrutoTextual}" />
+							<listcell label="@{registro.valorImpostoTextual}" />
+							<listcell label="@{registro.valorTotalTextual}" style="font-weight: bold;" />
 						</listitem>
 					</listbox>
 				</row>

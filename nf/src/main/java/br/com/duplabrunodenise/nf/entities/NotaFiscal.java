@@ -1,5 +1,7 @@
 package br.com.duplabrunodenise.nf.entities;
 
+import java.text.DecimalFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +14,8 @@ public class NotaFiscal {
 	private int id;
 	private double valorImposto;
 	private double valorBruto;
+	
+	private static final DecimalFormat formatadorTextual = new DecimalFormat("#.00");
 
 	public NotaFiscal() {}
 
@@ -32,6 +36,10 @@ public class NotaFiscal {
 		return valorImposto;
 	}
 
+	public String getValorImpostoTextual() {
+		return formatadorTextual.format(this.getValorImposto());
+	}
+
 	public void setValorImposto(double valorImposto) {
 		this.valorImposto = valorImposto;
 	}
@@ -40,12 +48,20 @@ public class NotaFiscal {
 		return valorBruto;
 	}
 
+	public String getValorBrutoTextual() {
+		return formatadorTextual.format(this.getValorBruto());
+	}
+
 	public void setValorBruto(double valorBruto) {
 		this.valorBruto = valorBruto;
 	}
 
 	public double getValorTotal() {
 		return this.valorBruto + this.valorImposto;
+	}
+
+	public String getValorTotalTextual() {
+		return formatadorTextual.format(this.getValorTotal());
 	}
 
 }
