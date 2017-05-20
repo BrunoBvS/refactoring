@@ -45,5 +45,31 @@
 				</row>
 			</rows>
 		</grid>
+		<grid>
+			<columns>
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<listbox id="lstbxNotaFiscal" mold="paging"
+						pageSize="5" model="@{exemplo$composer.listaNotaFiscal}"
+						width="100%" emptyMessage="Nenhum informação na tabela."
+						visible="false">
+						<listhead sizable="true">
+							<listheader label="Imposto" width="50%"
+								align="center" />
+							<listheader label="Valor Bruto" width="50%"
+								align="center" />
+						</listhead>
+						<listitem self="@{each=registro}"
+							value="@{registro}">
+							<listcell label="@{registro.id}" />
+							<listcell label="@{registro.valorBruto}" />
+						</listitem>
+					</listbox>
+				</row>
+			</rows>
+		</grid>
+
 	</window>
 </zk>

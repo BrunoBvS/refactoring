@@ -5,10 +5,11 @@ import br.com.duplabrunodenise.nf.services.BancoService;
 import br.com.duplabrunodenise.nf.services.EmailService;
 
 public class GeradorNotaFiscal {
-	public void geraNota(Fatura fatura, ImpostoInterface imposto) {
+	public NotaFiscal geraNota(Fatura fatura, ImpostoInterface imposto) {
 		NotaFiscal notaFiscal = geraNotaFiscal(fatura, imposto);
 		BancoService.persisteEntity(notaFiscal);
 		EmailService.envieEmail(fatura, notaFiscal);
+		return notaFiscal;
 	}
 
 	private NotaFiscal geraNotaFiscal(Fatura fatura, ImpostoInterface imposto) {
