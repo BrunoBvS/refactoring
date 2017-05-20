@@ -39,7 +39,7 @@ public class EmailService {
 
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("refatoracaoalfa2017@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("brunovieira2012@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("denisecz@gmail.com,brunovieira2012@gmail.com"));
 			message.setSubject(assuntoEmail);
 			message.setText(conteudoEmail);
 
