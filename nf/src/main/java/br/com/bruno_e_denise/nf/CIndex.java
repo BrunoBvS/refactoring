@@ -1,6 +1,5 @@
 package br.com.bruno_e_denise.nf;
 
-import org.zkoss.bind.AnnotateBinder;
 import org.zkoss.zhtml.Messagebox;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Events;
@@ -31,12 +30,12 @@ public class CIndex extends GenericForwardComposer {
 
 	public void onGerarNotaFiscal() {
 		Fatura fatura = new Fatura(this.txtbxNomeCliente.getValue(), this.dcmlbxValorFatura.getValue().doubleValue());
-		Imposto imposto;
+		ImpostoInterface imposto;
 
 		if (this.rdgrpTipoImposto.getSelectedItem().getValue().toString().compareTo("1") == 0) {
-			imposto = new ISS();
+			imposto = new ImpostoISS();
 		} else {
-			imposto = new ICMS();
+			imposto = new ImpostoICMS();
 		}
 
 		new GeradorNotaFiscal().geraNota(fatura, imposto);

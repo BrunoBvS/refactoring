@@ -1,4 +1,4 @@
-package br.com.bruno_e_denise.nf;
+package br.com.bruno_e_denise.nf.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

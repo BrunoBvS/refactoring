@@ -1,4 +1,7 @@
-package br.com.bruno_e_denise.nf;
+package br.com.bruno_e_denise.nf.services;
+
+import br.com.bruno_e_denise.nf.Fatura;
+import br.com.bruno_e_denise.nf.entities.NotaFiscal;
 
 import java.util.Properties;
 
@@ -10,9 +13,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EnviarEmail {
+public class EmailService {
 	
-	public void enviarEmail(Fatura fatura) {
+	public static void envieEmail(Fatura fatura, NotaFiscal notaFiscal) {
 				
 		final String username = "refatoracaoalfa2017@gmail.com";
 		final String password = "refatoracao123";
@@ -31,17 +34,29 @@ public class EnviarEmail {
 
 		try {
 
+			String assuntoEmail = getAssuntoEmail();
+			String conteudoEmail = getConteudoEmail(fatura, notaFiscal);
+
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("refatoracaoalfa2017@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("brunovieira2012@gmail.com"));
-			message.setSubject("Aula Refatoração");
-			message.setText("Refatoração Classes NF");
+			message.setSubject(assuntoEmail);
+			message.setText(conteudoEmail);
 
 			Transport.send(message);
 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	private static String getAssuntoEmail() {
+		return "Fatura";
+	}
+
+	private static String getConteudoEmail(Fatura fatura, NotaFiscal notaFiscal) {
+		return "Caro " + fatura.getNomeCliente() + ", sua fatura de valor " + fatura.getValor() +
+				" foi emitida com sucesso com imposto de " + notaFiscal.getValorImposto() + '.';
 	}
 	
 }

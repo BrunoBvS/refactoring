@@ -1,35 +1,17 @@
 package br.com.bruno_e_denise.nf;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import br.com.bruno_e_denise.nf.entities.NotaFiscal;
+import br.com.bruno_e_denise.nf.services.BancoService;
+import br.com.bruno_e_denise.nf.services.EmailService;
 
 public class GeradorNotaFiscal {
-	public void geraNota(Fatura fatura, Imposto imposto) {
+	public void geraNota(Fatura fatura, ImpostoInterface imposto) {
 		NotaFiscal notaFiscal = geraNotaFiscal(fatura, imposto);
-		armazenarNoBanco(notaFiscal);
-		enviarEmail(fatura);
+		BancoService.persisteEntity(notaFiscal);
+		EmailService.envieEmail(fatura, notaFiscal);
 	}
 
-	private void enviarEmail(Fatura fatura) {
-		EnviarEmail enviaEmail = new EnviarEmail();
-		enviaEmail.enviarEmail(fatura);
-	}
-
-	private void armazenarNoBanco(NotaFiscal notaFiscal) {
-		// Armazenar no BD
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgres");
-
-		EntityManager em = emf.createEntityManager();
-		em.getTransaction().begin();
-
-		em.persist(notaFiscal);
-
-		em.getTransaction().commit();
-		em.close();
-	}
-
-	private NotaFiscal geraNotaFiscal(Fatura fatura, Imposto imposto) {
+	private NotaFiscal geraNotaFiscal(Fatura fatura, ImpostoInterface imposto) {
 		final double valorDaFatura = fatura.getValor();
 		final double valorImposto = imposto.getValor(valorDaFatura);
 		final double valorBruto = fatura.getValor();

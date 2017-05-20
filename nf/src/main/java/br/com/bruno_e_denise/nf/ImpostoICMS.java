@@ -1,9 +1,9 @@
 package br.com.bruno_e_denise.nf;
 
-public class ISS implements Imposto {
+public class ImpostoICMS implements ImpostoInterface {
 
 	public Double getValor(Double fatura) {
-		return fatura * 0.1;
+		return fatura*0.11;
 	}
 
 }
